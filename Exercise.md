@@ -10,18 +10,18 @@ exploitation of insecure randomness.
 ### 1.1. Solidity Implementation (2P)
 
 Implement a hash-time-lock store of ether as a Solidity smart contract. It must
-fulfill the interface in file `contracts/Store.sol`. Your contract should make
-it possible to deposit ether with a hash-time-lock, claimable within a duration
-specified by the depositor.  After the claim period has timed out, the depositor
-should be able to recover their funds.
+implement the interface in file `contracts/Store.sol`. Your contract should
+enable users to deposit ether with a hash-time-lock, claimable within a duration
+specified by the depositor. After the claim period has timed out, the depositor
+should be able to recover his funds.
 
-- When `deposit` is called, the amount of the attached ether should be stored
-  with the lock. Make sure that repeated calls with the same `lock` increase the
-  locked amount and that the timeout for this lock is reset. Repeated calls for
-  the same `lock` must be sent by the same depositor. A `Deposited` event should
-  be emitted.
+- When `deposit` is called, the amount of attached ether and the submitted `lock`
+  should be stored. Make sure that repeated calls with the same `lock` increase
+  the locked amount and that the timeout for this lock is reset. Repeated calls
+  for the same `lock` must be sent by the same depositor. A `Deposited` event
+  should be emitted.
 - When `claim` is called, `require` that there is some ether stored at the
-  corresponding `lock = keccak256(key)` and that the claim period is not over
+  corresponding `lock = keccak256(key)` and that the claim period is not over,
   yet. If successful, send the stored ether for the lock to the sender of the
   `claim` call. A `Claimed` event should be emitted.
 - When `recover` is called, check that the claim period for this lock is over
@@ -34,43 +34,76 @@ possible, e.g., it does not allow unintended or double payouts etc.
 
 Deploy your contract to the Rinkeby testnet. Get ether from a so-called testnet
 [faucet](https://faucet.rinkeby.io/). Contact us if you are having trouble
-getting some testnet ether. Once deployed, let us know about your contract
-address so we can check that it fulfills the above specification. We'll run a
-test-suite against it.
+getting some testnet ether. You will have to submit the address of your deployed
+contract, as we are going to run a test-suite against it.
 
-### 1.2. Security Issues (1/2 P)
+### 1.2. Security Issues (0.5 P)
 
 Explain the security issues that this type of hash-locking on Ethereum exhibits.
 
 ## 2. Treasure Hunt
 
-In this exercise, you will hunt for some ERC20 token by exploiting an insecure
-source of randomness. Treasure Hunt Token can be generated and acquired by
+In this exercise, you will hunt for some ERC20 tokens by exploiting an insecure
+source of randomness. Treasure Hunt Tokens can be generated and acquired by
 guessing a key that must equal the insecure randomness from function
-`insecureRandomness`. The first successful hunter wins 1024e18 token after which
+`insecureRandomness`. The first successful hunter wins 1024e18 tokens after which
 the reward is halved for every new successful hunter. The ERC20 contract from
-file `contracts/Treasure.sol` is deployed at address ...
+file `contracts/Treasure.sol` is deployed at address
+[`0xcd82B734351b9398DC7Cf380556507Ba422754A5`](https://rinkeby.etherscan.io/address/0xcd82B734351b9398DC7Cf380556507Ba422754A5).
 
-#### 2.1. Insecure Randomness (1/2 P)
+#### 2.1. Insecure Randomness (0.5 P)
 
 Explain why the randomness from function `insecureRandomness` is insecure.
 
 #### 2.2. Exploit (2 P)
 
 Exploit the security issue that you just described! Write either a browser-based
-or terminal-based dApp and claim your CAC token by calling `claimTreasure` on
+or terminal-based dApp and claim your CAC tokens by calling `claimTreasure` on
 the `Treasure` contract with the correct key.
 
 In any case, let us know about the address that you are going to use for the
-hunt so that we can add it to the whitelist of the contract. Full points will
+hunt so that we can add it to the whitelist of the contract. Exploits executed
+by unregistered addresses cannot be executed successfully. Full points will
 only be rewarded to successful hunters.
 
 ## Submission
 
-All source code files must be submitted via moodle. Your submission must also
-include the names of all group members and their matriculation numbers. And
-don't forget to tell us the address of your deployed contract on the Rinkeby
-testnet for exercise 1. E-Mail us the Rinkeby address that you are going to use
-for the treasure hunt in exercise 2 to `david.kretzler@cysec.de` as soon as you
-are going to start your exploit so that we can add it to the whitelist
-beforehand.
+Your solution has to be submitted via moodle and should contain three files that
+follow the specifications below. Files with different names or format cannot be
+accounted.
+
+Your solutions for exercise 1.2, 2.1 and the address of your deployed contract
+of exercise 1.1 needs to be submitted as a text file called   
+`<First name group member 1>_<Last name group member 1>_Solution.txt`
+that has the following format:
+
+>= Solution Bonus Exercise
+>
+>== Group Information
+>
+> <First name group member 1>, <Last name group member 1>, <Matiriculation number group member 1>   
+> [<First name group member 2>, <Last name group member 2>, <Matiriculation number group member 2>]   
+> [<First name group member 3>, <Last name group member 3>, <Matiriculation number group member 3>]   
+>
+> == Solution 1.1
+>
+> Contract address: < Address of the deployed hash-time-lock store contract>
+>
+> == Solution 1.2
+>
+> <Solution for exercise 1.2 as free text>
+>
+> == Solution 2.1
+>
+> <Solution for exercise 2.1 as free text>
+
+The code you have deployed for exercise 1.1 needs to be submitted in form of a
+solidity source code file. The file has to be called   
+`<First name group member 1>_<Last name group member 1>_Contract1.sol`.
+
+The code you have utilized for your exploit in exercise 2.2 needs to be submitted
+in form of a source code file. The name of this file has to start with   
+`<First name group member 1>_<Last name group member 1>_Solution2`.
+
+_Remark: Replace `<...>` with the information specified between the brackets.   
+Information between `[...]` is optional._
