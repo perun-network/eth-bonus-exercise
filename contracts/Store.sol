@@ -13,7 +13,7 @@ interface HTLStore {
 
     // A Claimed event should be emitted after deposited ether has been
     // successfully claimed from the store.
-    event Claimed(address beneficiary, bytes32 lock, bytes key, uint amount);
+    event Claimed(address beneficiary, bytes32 lock, uint key, uint amount);
 
     // A Recovered event should be emitted after ether has been recovered by the
     // initial benefactor.
