@@ -96,6 +96,10 @@ that has the following format:
 > == Solution 2.1
 >
 > <Solution for exercise 2.1 as free text>
+>
+> == Solution 2.2
+>
+> Hunter address: < The whitelisted address you have used for your exploit>
 
 The code you have deployed for exercise 1.1 needs to be submitted in form of a
 solidity source code file. The file has to be called   
