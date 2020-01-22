@@ -107,7 +107,7 @@ solidity source code file. The file has to be called
 
 The code you have utilized for your exploit in exercise 2.2 needs to be submitted
 in form of a source code file. The name of this file has to start with   
-`<First name group member 1>_<Last name group member 1>_Solution2`.
+`<First name group member 1>_<Last name group member 1>_Solution2.<file extension>`.
 
 _Remark: Replace `<...>` with the information specified between the brackets.   
 Information between `[...]` is optional._
